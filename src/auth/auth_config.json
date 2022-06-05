@@ -1,0 +1,15 @@
+{
+    "credential" : {
+        "username" : "restuser",
+        "password" : "rest$pwd123"
+    },
+    "jwt" : {
+        "enabled" : true,
+        "secret" : "CS1UQVwjBB7enndjvQKrR16CYmOGrgQUFiYd5wf3YnbvjEfKvKRR9Ix0hSCf4XUMWh3pTlU0mtlE4eP2Sul1sJvfDhfzZDL1p4EychX6uhw1F0qZyWBLwd80vov87j",
+        "ttl" : "90d"
+    },
+    "manual" : {
+        "enabled" : false,
+        "secret" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+    }
+}

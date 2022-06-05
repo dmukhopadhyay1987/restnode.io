@@ -1,0 +1,85 @@
+{
+	"loggingPref": {
+		"execid": {
+			"enabled": true
+		},
+		"request": {
+			"enabled": true,
+			"params": {
+				"url": {
+					"enabled": true
+				},
+				"content": {
+					"enabled": true
+				}
+			}
+		},
+		"message": {
+			"enabled": true
+		},
+		"data": {
+			"enabled": true
+		}
+	},
+	"logprofiles": {
+		"defaultProfile": {
+			"enabled": false,
+			"level": "trace"
+		},
+		"customProfile": {
+			"enabled": true,
+			"components": {
+				"errorLog": {
+					"name": "rofl",
+					"enabled": true,
+					"type": "dateFile",
+					"compress": true,
+					"encoding": "utf-8",
+					"filename": "logs/restnodeio_error.log",
+					"level": "error",
+					"bkpFileNamePattern": "yyyy-MM-dd",
+					"maxLogFileSize": 10485760,
+					"backups": 100,
+					"logPattern": "[%d{dd-MM-yyyy hh:mm:ss,SSS}] [%p] %m"
+				},
+				"infoLog": {
+					"name": "drofl",
+					"enabled": true,
+					"type": "dateFile",
+					"compress": true,
+					"encoding": "utf-8",
+					"filename": "logs/restnodeio_trace.log",
+					"level": "info",
+					"bkpFileNamePattern": "yyyy-MM-dd",
+					"maxLogFileSize": 10485760,
+					"backups": 100,
+					"logPattern": "[%d{dd-MM-yyyy hh:mm:ss,SSS}] [%p] %m"
+				},
+				"consoleLog": {
+					"name": "conl",
+					"enabled": true,
+					"level": "info",
+					"logPattern": "%[%d{dd-MM-yyyy hh:mm:ss,SSS}%] %[[%p]%] %m"
+				}
+			}
+		},
+		"dbProfile": {
+			"enabled": false,
+			"components": {
+				"dbLog": {
+					"name": "dbrofl",
+					"enabled": true,
+					"type": "dateFile",
+					"compress": true,
+					"encoding": "utf-8",
+					"filename": "logs/restnodeio_database.log",
+					"level": "info",
+					"bkpFileNamePattern": "yyyy-MM-dd",
+					"maxLogFileSize": 10485760,
+					"backups": 100,
+					"logPattern": "[%d{dd-MM-yyyy hh:mm:ss,SSS}] [%p] %m"
+				}
+			}
+		}
+	}
+}

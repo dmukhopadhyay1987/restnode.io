@@ -1,0 +1,10 @@
+{
+    "entries" : [
+        {
+            "id" : "s01",
+            "name" : "search",
+            "path" : "../controllers/search/search_controller",
+            "desc" : "search service"
+        }
+    ]
+}

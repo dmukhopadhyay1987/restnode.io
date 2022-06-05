@@ -1,0 +1,29 @@
+{
+    "searchkeys": {
+        "EPODS" : [
+            "ProductEBM.DataArea.Product.ProductGroupID",            
+            "ProductEBM.DataArea.Product.Option.OptionID",
+            "ProductEBM.DataArea.Product.Option.SKU.SKUID",
+            "SellingDisplaySetEBM.DataArea.SellingDisplaySet.DisplaySetID",
+            "UDA.UDA_ID",
+            "INPUTWORKFLOW.WORKFLOWSTATUS.ID"
+        ],
+        "EPODSA" : [
+            "request.ProductGroupID",
+            "request.ProductEBM.DataArea.ActionCode",
+            "request.ProductEBM.DataArea.Product.ProductGroupID",
+            "request.OptionID",
+            "request.Option.OptionID",
+            "request.ProductEBM.DataArea.Product.Option.OptionID",
+            "request.SKUID",
+            "request.SKU.SKUID",
+            "request.ProductEBM.DataArea.Product.Option.SKU.SKUID",
+            "ProductEBM.DataArea.Product.OldProductGroupID",
+            "ProductEBM.DataArea.Product.NewProductGroupID",
+            "request.SellingDisplaySetEBM.DataArea.SellingDisplaySet.SellingDisplaySetComponent.ComponentProductGroupID",
+            "request.SellingDisplaySetEBM.DataArea.SellingDisplaySet.DisplaySetID",
+            "request.UDA.UDA_ID",
+            "request.INPUTWORKFLOW.WORKFLOWSTATUS.ID"
+        ]
+    }
+}

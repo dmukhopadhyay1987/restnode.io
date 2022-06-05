@@ -1,0 +1,129 @@
+{
+	"url" : "mongodb://epodsapp:epodsapp0123#@localhost:27020,localhost:27021,localhost:27022/?replicaSet=epodsrs&readPreference=secondaryPreferred&maxStalenessSeconds=120",
+	"options": {
+		"poolSize": 1,
+		"socketTimeoutMS": 10000,
+		"useNewUrlParser": true,
+		"useUnifiedTopology": true
+	},
+	"logging": {
+		"enabled": false,
+		"level": "info",
+		"class": [
+			"Db",
+			"Server",
+			"ReplSet",
+			"Pool",
+			"Connection",
+			"Ping"
+		],
+		"loggingPref": {
+			"date": {
+				"prefix": "TS",
+				"enabled": true
+			},
+			"pid": {
+				"prefix": "PID",
+				"enabled": true
+			},
+			"className": {
+				"prefix": "CLASS",
+				"enabled": true
+			},
+			"message": {
+				"prefix": "MSG",
+				"enabled": true
+			}
+		}
+	},
+	"collections" : {
+		"crossref" : {
+			"diffid" : {
+				"main": "CrossRef_DiffId"
+			},
+			"diffrange" : {
+				"main" : "CrossRef_DiffRange"
+			},
+			"phase" : {
+				"main" : "CrossRef_Phase"
+			},
+			"season" : {
+				"main" : "CrossRef_Season"
+			},
+			"uda" : {
+				"main" : "CrossRef_UDA"
+			},
+			"vatregion" : {
+				"main" : "CrossRef_VAT_Region"
+			},
+			"country" : {
+				"main" : "CrossReff_Country"
+			},
+			"language" : {
+				"main" : "CrossReff_Language"
+			},
+			"audit" : "CrossReff_Audit",
+			"error" : "CrossReff_Error"
+		},
+		"csvimport" : {
+			"traceall" : {
+				"main" : "Product_EBO",
+				"audit" : "Product_Audit",
+				"error" : "Product_Error",
+				"csvaudit" : "CSVImport_TraceAll_Audit"
+			},
+			"productreclass" : {
+				"main" : "Product_EBO",
+				"audit" : "Product_Audit",
+				"error" : "Product_Error",
+				"csvaudit" : "CSVImport_productReclassification_Audit"
+			},
+			"mhreclass" : {
+				"main" : "MerchandisingHierarchy_EBO",
+				"audit" : "MH_Audit",
+				"error" : "MH_Error",
+				"csvaudit" : "CSVImport_mhReclassification_Audit"
+			}
+		},
+		"displayset" : {
+			"main" : "DisplaySet_EBO",
+			"audit" : "DisplaySet_Audit",
+			"error" : "DisplaySet_Error"
+		},
+		"mh" : {
+			"main" : "MerchandisingHierarchy_EBO",
+			"audit" : "MH_Audit",
+			"error" : "MH_Error"
+		},
+		"product" : {
+			"product" : {
+				"main" : "Product_EBO"
+			},
+			"itemlocation" : {
+				"main" : "Item_Location"
+			},
+			"audit" : "Product_Audit",
+			"error" : "Product_Error"
+		},
+		"productenrich" : {
+			"product" : {
+				"main" : "Product_EBO"
+			},
+			"displayset" : {
+				"main" : "DisplaySet_EBO"
+			},
+			"audit" : "ProductEnrich_Audit",
+			"error" : "ProductEnrich_Error"
+		},
+		"webselling" : {
+			"main" : "WebSellingClassification_EBO",
+			"audit" : "WebSelling_Audit",
+			"error" : "WebSelling_Error"
+		},
+		"workflowstatus" : {
+			"main" : "WorkFlowStatus_EBO",
+			"audit" : "WorkFlowStatus_Audit",
+			"error" : "WorkFlowStatus_Error"
+		}
+	}
+}

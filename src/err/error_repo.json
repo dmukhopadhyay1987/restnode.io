@@ -1,0 +1,38 @@
+{
+	"SUCCESS": {
+		"statusCode": "200",
+		"statusMessage": "Operation Successful"
+	},
+	"EXCEPTION_RESPONSE": {
+		"statusCode": "500",
+		"statusMessage": "Exception Occurred"
+	},
+	"NO_DOC_FOUND": {
+		"statusCode": "501",
+		"statusMessage": "No document found."
+	},
+	"NO_OR_INVALID_INPUT": {
+		"statusCode": "504",
+		"statusMessage": "Not a valid input."
+	},
+	"OP_FAILED_INVALID_INPUT": { 
+		"statusCode": "505", 
+		"statusMessage": "Operation failed. Error occurred." 
+	},
+	"ERR_CREDENTIAL": {
+		"statusCode": "507",
+		"statusMessage": "Error. Wrong credentials. Token could NOT be generated."
+	},
+	"ERR_TOKEN": {
+		"statusCode": "508",
+		"statusMessage": "Error. Token is disabled."
+	},
+	"ERR_AUTH": {
+		"statusCode": "509",
+		"statusMessage": "Error. Invalid token."
+	},
+	"RESULT_TOO_LARGE" : {
+		"statusCode": "510",
+		"statusMessage": "Result is too large."
+	}
+}

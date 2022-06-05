@@ -1,0 +1,157 @@
+<html ng-app="search" ng-cloak>
+
+<head>
+    <link rel="stylesheet" href="/static/index/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/index/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/static/index/css/search.css">
+    <script src="/static/index/lib/jquery-3.3.1.min.js"></script>
+    <script src="/static/index/lib/bootstrap.min.js"></script>
+    <script src="/static/index/lib/angular.min.js"></script>
+    <script src="/static/index/lib/angular-sanitize.min.js"></script>
+    <script src="/static/index/app.js"></script>
+    <script src="/static/index/searchCtrl.js"></script>
+    <title>
+        Search
+    </title>
+</head>
+
+<body ng-controller="searchCtrl" ng-init="discovery()">
+    <nav class="navbar navbar-light bg-dark">
+        <span class="navbar-brand white-text mb-0 h1">Search</span>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <form>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action input-border square-border">
+                            <strong>Database : </strong>&nbsp;&nbsp;
+                            <input class="form-radio-input" ng-model="root.db" type="radio" value="EPODS" id="db1"
+                                name="db" />&nbsp; EPODS&nbsp;
+                            <input class="form-radio-input" ng-model="root.db" type="radio" value="EPODSA" id="db2"
+                                name="db" />&nbsp; EPODSA
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action input-border square-border">
+                            <input class="form-check-input" ng-model="root.selectAllorNone" type="checkbox"
+                                id="enableAll" name="enableAll" />&nbsp; <strong>All</strong>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action input-border square-border"
+                            ng-repeat="k in root.sources | orderBy:'toString()'">
+                            <input class="form-check-input" ng-model="root.sourcefilter[k]" type="checkbox"
+                                name="enabled{{$index}}" id="enabled{{$index}}" />&nbsp; {{k}}
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <form ng-submit="search()">
+                    <input class="form-control input-border" placeholder="Type + 'ENTER'" type="text"
+                        ng-model="root.query" ng-keypress="isEnter($event)" />
+                </form>
+                <br />
+                <div id="accordion">
+                    <div class="row" ng-if="v.length > 0" ng-repeat="(k, v) in root.result track by $index">
+                        <div class="col-md-12">
+                            <div class="card no-border">
+                                <div class="card-header card-border" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link dark-text" data-toggle="collapse"
+                                            data-target="#collapse{{$index}}" aria-expanded="false"
+                                            aria-controls="collapse{{$index}}"><strong>{{k}}</strong></button>
+                                        <span class="badge bg-light dark-text input-border"
+                                            ng-if="v.length > 0">{{v.length}}</span>&nbsp;<a
+                                            href="data:text/json;charset=utf-8,{{encodeForDownload(v)}}'"
+                                            download="{{k}}.json"><span
+                                                class="glyphicon glyphicon-download dark-text"></span></a>
+                                    </h5>
+                                </div>
+                                <div id="collapse{{$index}}" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordion">
+                                    <div class="card-body card-border dark-text">
+                                        <div class="row" ng-repeat="r in v track by $index" ng-if="root.db == 'EPODSA'">
+                                            <div id="accordion3">
+                                                <div class="col-md-12">
+                                                    <div class="card no-border">
+                                                        <div class="card-header card-border" id="headingOne1">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link dark-text"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#collapse{{r._id}}"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="collapse{{r._id}}"><strong>{{r._id}}</strong>&nbsp;|&nbsp;{{r.execid}}&nbsp;|&nbsp;<strong>{{r.timestamp | date : 'dd MMM yyyy'}}</strong>&nbsp;|&nbsp;{{r.timestamp | date : 'HH:mm:ss.s'}}&nbsp;|&nbsp;{{r.latency}}</button>&nbsp;<a
+                                                                    href="data:text/json;charset=utf-8,{{encodeForDownload(r)}}'"
+                                                                    download="{{r._id}}.json"><span
+                                                                        class="glyphicon glyphicon-download dark-text"></span></a>
+                                                            </h5>
+                                                        </div>
+                                                        <div id="collapse{{r._id}}" class="collapse"
+                                                            aria-labelledby="headingOne1" data-parent="#accordion3">
+                                                            <div class="card-body card-border dark-text">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Request</strong></div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <pre>{{r.request | json}}</pre>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Response</strong></div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <pre>{{r.response | json}}</pre>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-repeat="r in v track by $index" ng-if="root.db == 'EPODS'">
+                                            <div id="accordion2">
+                                                <div class="col-md-12">
+                                                    <div class="card no-border">
+                                                        <div class="card-header card-border" id="headingOne2">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link dark-text"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#collapse{{r._id}}"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="collapse{{r._id}}"><strong>{{r._id}}</strong></button>&nbsp;<a
+                                                                    href="data:text/json;charset=utf-8,{{encodeForDownload(r)}}'"
+                                                                    download="{{r._id}}.json"><span
+                                                                        class="glyphicon glyphicon-download dark-text"></span></a>
+                                                            </h5>
+                                                        </div>
+                                                        <div id="collapse{{r._id}}" class="collapse"
+                                                            aria-labelledby="headingOne2" data-parent="#accordion2">
+                                                            <div class="card-body card-border dark-text">
+                                                                <pre>{{r | json}}</pre>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
